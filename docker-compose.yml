@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nestjs_sample
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./docker/dbdata:/var/lib/postgresql/data

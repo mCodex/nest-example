@@ -1,0 +1,12 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "nestjs_sample",
+    "migrations": ["./src/shared/infra/db/migrations/*.ts"],
+    "cli": {
+        "migrationsDir": "./src/shared/infra/db/migrations"
+    }
+  }
