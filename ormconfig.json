@@ -5,8 +5,10 @@
     "username": "postgres",
     "password": "postgres",
     "database": "nestjs_sample",
-    "migrations": ["./src/shared/infra/db/migrations/*.ts"],
+    "migrations": ["dist/shared/infra/typeorm/migrations/*.js"],
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "migrationsRun": true,
     "cli": {
-        "migrationsDir": "./src/shared/infra/db/migrations"
+        "migrationsDir": "src/shared/infra/typeorm/migrations"
     }
   }
