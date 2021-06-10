@@ -9,7 +9,7 @@ My sample NestJS project featuring:
 
 ## Setting Up
 
-First of all, create an empty folder `dbdata` inside `docker`.
+First of all, create an empty folder `dbdata` inside `docker` folder.
 
 After that, make sure you have docker installed on your machine and then run:
 
@@ -36,12 +36,6 @@ Then you must install the project's dependencies:
 yarn
 ```
 
-Finally, you can run typeorm's migrations:
-
-```bash
-yarn typeorm migration:run
-```
-
 ## Running the application
 
 You can start the application using:
@@ -53,3 +47,13 @@ yarn start:dev
 The API can be accessed in this URL:
 
 http://localhost:3000
+
+## Migrations
+
+Migrations run automatically on every server's start/restart. If you want to create and run migrations without restarting the server, you just need to run:
+
+```bash
+yarn typeorm migration:run
+```
+
+Make sure the server is running when you create a new migration, because if you want to run migrations manually `ormconfig.json` reads the files from `dist` folder which is generated in runtime.
