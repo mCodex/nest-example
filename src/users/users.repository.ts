@@ -2,7 +2,9 @@ import { Repository, EntityRepository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 
 import { User } from './entities/user.entity';
+
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 @EntityRepository(User)
@@ -16,15 +18,20 @@ export class UserRepository extends Repository<User> {
   }
 
   public async createUser(payload: CreateUserDto): Promise<User> {
-    const { firstName, lastName } = payload;
+    const user = await this.create(payload);
 
-    const userData = new User();
-
-    userData.firstName = firstName;
-    userData.lastName = lastName;
-
-    const user = await this.save(userData);
+    await this.save(user);
 
     return user;
+  }
+
+  public async updateUser(user: User, payload: UpdateUserDto): Promise<User> {
+    const updatedUser = await this.save({ ...user, ...payload });
+
+    return updatedUser;
+  }
+
+  public async deleteUser(userId: string): Promise<void> {
+    await this.softDelete(userId);
   }
 }
